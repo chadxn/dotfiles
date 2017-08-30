@@ -85,5 +85,5 @@ COLOR3="\[$(tput setaf 1)\]"
 COLOR4="\[$(tput setaf 3)\]"
 RESETCOLOR="\[$(tput sgr0)\]"
 
-export PS1="${COLOR1}[\D{%F %T}]${COLOR2}[\w]${COLOR3}\`parse_git_branch\`${COLOR4}\`get_python_venv\`\`get_ruby_rbenv\`${RESETCOLOR}\n> "
+export PS1="${COLOR1}[\u@\h \D{%F %T}]${COLOR2}[\w]${COLOR3}\`parse_git_branch\`${COLOR4}\`get_python_venv\`\`get_ruby_rbenv\`${RESETCOLOR}\n> "
 
