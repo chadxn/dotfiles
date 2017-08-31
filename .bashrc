@@ -1,6 +1,18 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 eval "$(rbenv init -)"
 
+function get_trunc_path() {
+    TRUNC_PATH=`echo -n "${PWD/#$HOME/~}" | awk -F "/" '{
+        if (length($0) > 14) {
+            if (NF>4) print $1 "/" $2 "/.../" $(NF-1) "/" $NF;
+            else if (NF>3) print $1 "/" $2 "/.../" $NF;
+            else print $1 "/.../" $NF;
+        }
+        else print $0;
+        }'`
+    echo "$TRUNC_PATH"
+}
+
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -85,5 +97,5 @@ COLOR3="\[$(tput setaf 1)\]"
 COLOR4="\[$(tput setaf 3)\]"
 RESETCOLOR="\[$(tput sgr0)\]"
 
-export PS1="${COLOR1}[\u@\h \D{%F %T}]${COLOR2}[\w]${COLOR3}\`parse_git_branch\`${COLOR4}\`get_python_venv\`\`get_ruby_rbenv\`${RESETCOLOR}\n> "
+export PS1="${COLOR1}[\u@\h \D{%F %T}]${COLOR2}[\`get_trunc_path\`]${COLOR3}\`parse_git_branch\`${COLOR4}\`get_python_venv\`\`get_ruby_rbenv\`${RESETCOLOR}\n> "
 
