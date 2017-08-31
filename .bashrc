@@ -2,7 +2,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 eval "$(rbenv init -)"
 
 function get_trunc_path() {
-    TRUNC_PATH=`echo -n "${PWD/#$HOME/~}" | awk -F "/" '{
+    P=${PWD/#$HOME/'~'}
+        
+    TRUNC_PATH=`echo -n $P | awk -F "/" '{
         if (length($0) > 14) {
             if (NF>4) print $1 "/" $2 "/.../" $(NF-1) "/" $NF;
             else if (NF>3) print $1 "/" $2 "/.../" $NF;
