@@ -15,6 +15,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-surround'
 Plug 'Townk/vim-autoclose'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 
 call plug#end()
 
